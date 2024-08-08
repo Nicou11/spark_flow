@@ -9,7 +9,7 @@ def re_partition(load_dt, from_path='data/movie/extract'):
     write_path = f'{write_base}/load_dt={load_dt}'
 
     df = pd.read_parquet(read_path)
-    df['load_df'] = load_dt
+    df['load_dt'] = load_dt
     rm_dir(write_path)
     df.to_parquet(
             write_base,

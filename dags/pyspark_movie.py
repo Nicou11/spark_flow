@@ -56,7 +56,7 @@ with DAG(
         task_id="join.df",
         bash_command='''
             echo "spark-submit....."
-            echo "{{ds_nodash}"
+            echo "{{ds_nodash}}"
             ''',
     )
     
@@ -65,7 +65,7 @@ with DAG(
         task_id="agg.df",
         bash_command='''
             echo "spark-submit....."
-            echo "{{ds_nodash}"
+            echo "{{ds_nodash}}"
             ''',
     )
 
