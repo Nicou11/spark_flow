@@ -2,10 +2,10 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
 import sys
 
-dt = sys.argv[1]
+LOAD_DT = sys.argv[1]
 spark = SparkSession.builder.appName("Join").getOrCreate()
 
-df1 = spark.read.parquet("/home/young12/data/movie/repartition/load_dt={load_dt}")
+df1 = spark.read.parquet(f"/home/young12/data/movie/repartition/load_dt={LOAD_DT}")
 
 df1.createOrReplaceTempView("movie")
 
@@ -33,7 +33,7 @@ SELECT
     audiCnt,
     showCnt,
     multiMovieYn,
-    -- repNationCd,
+    repNationCd,
     '{LOAD_DT}' AS load_dt
 FROM movie
 WHERE repNationCd IS NULL
