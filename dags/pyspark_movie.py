@@ -55,7 +55,7 @@ with DAG(
     join_df = BashOperator(
         task_id="join.df",
         bash_command='''
-            echo "spark-submit....."
+            $SPARK_HOME/bin/spark-submit /home/young12/code/spark_flow/py/movie_join_df.py {{ds_nodash}}
             echo "{{ds_nodash}}"
             ''',
     )
