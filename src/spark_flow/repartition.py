@@ -13,8 +13,9 @@ def re_partition(load_dt, from_path='tmp/sparkdata'):
     rm_dir(write_path)
     df.to_parquet(
             write_path,
-            partition_cols=['load_dt','multiMovieYn','repNationCd'])
-    return len(df), read_path, f'{write_path}/load_dt={load_dt}'
+            partition_cols=['load_dt','multiMovieYn','repNationCd']
+            )
+    return len(df), read_path, write_path 
 
 def rm_dir(dir_path):
     if os.path.exists(dir_path):
