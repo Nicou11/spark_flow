@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+import shutil
 
 def re_partition(load_dt, from_path='tmp/sparkdata'):
     home_dir = os.path.expanduser("~")
