@@ -30,7 +30,7 @@ with DAG(
    # schedule_interval=timedelta(days=1),
     schedule="10 2 * * *",
     start_date=datetime(2015, 1, 1),
-    end_date=datetime(2015, 3, 1),
+    end_date=datetime(2015, 1, 5),
     catchup=True,
     tags=['movie', 'movie_db', 'pyspark'],
 ) as dag:
