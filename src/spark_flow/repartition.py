@@ -1,9 +1,9 @@
 import pandas as pd
 import os
 
-def re_partition(load_dt, from_path='/tmp/sparkdata'):
+def re_partition(load_dt, from_path='tmp/sparkdata'):
     home_dir = os.path.expanduser("~")
-    read_path = f'{home_dir}/{from_patth}/load_dt={load_dt}'
+    read_path = f'{home_dir}/{from_path}/load_dt={load_dt}'
     write_base = f'{home_dir}/data/movie/repartition'
     write_path = f'{write_dir}/load_dt={load_dt}'
 
