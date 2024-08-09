@@ -30,7 +30,7 @@ with DAG(
    # schedule_interval=timedelta(days=1),
     schedule="10 2 * * *",
     start_date=datetime(2015, 1, 1),
-    end_date=datetime(2015, 1, 5),
+    end_date=datetime(2015, 4, 1),
     catchup=True,
     tags=['movie', 'movie_db', 'pyspark'],
 ) as dag:
@@ -56,16 +56,14 @@ with DAG(
         task_id="join.df",
         bash_command='''
             $SPARK_HOME/bin/spark-submit /home/young12/code/spark_flow/py/movie_join_df.py {{ds_nodash}}
-            ''',
-            dag=dag,
+            '''
     )
     
     
     agg_df = BashOperator(
         task_id="agg.df",
         bash_command='''
-            echo "spark-submit....."
-            echo "{{ds_nodash}}"
+            $SPARK_HOME/bin/spark-submit /home/young12/code/spark_flow/py/agg.py {{ds_nodash}}
             ''',
     )
 

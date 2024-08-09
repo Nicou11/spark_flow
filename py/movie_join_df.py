@@ -16,7 +16,6 @@ SELECT
     salesAmt,
     audiCnt,
     showCnt,
-    multiMovieYn,
     repNationCd,
     '{LOAD_DT}' AS load_dt
 FROM movie
@@ -33,7 +32,6 @@ SELECT
     audiCnt,
     showCnt,
     multiMovieYn,
-    repNationCd,
     '{LOAD_DT}' AS load_dt
 FROM movie
 WHERE repNationCd IS NULL
@@ -44,9 +42,9 @@ df3.createOrReplaceTempView("nation_null")
 df_j = spark.sql(f"""
 SELECT
     COALESCE(m.movieCd, n.movieCd) AS movieCd,
-    COALESCE(m.salesAmt, n.salesAmt),
-    COALESCE(m.audiCnt, n.audiCnt),
-    COALESCE(m.showCnt, n.showCnt),
+    COALESCE(m.salesAmt, n.salesAmt) AS salesAmt,
+    COALESCE(m.audiCnt, n.audiCnt) AS audiCnt,
+    COALESCE(m.showCnt, n.showCnt) AS showCnt,
     multiMovieYn,
     repNationCd, 
     '{LOAD_DT}' AS load_dt
@@ -55,6 +53,6 @@ ON m.movieCd = n.movieCd""")
 
 df_j.createOrReplaceTempView("join_df")
 
-df_j.write.partitionBy("load_dt", "multiMovieYn", "repNationCd").parquet("/home/young12/data/movie/hive/")
+df_j.write.mode('append').partitionBy("load_dt", "multiMovieYn", "repNationCd").parquet("/home/young12/data/movie/hive")
 
 spark.stop()
